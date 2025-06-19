@@ -4,15 +4,14 @@ import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
 
-
 # Connect to MySQL database
 db_config = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
-    'password': os.getenv('DB_PASSWORD'),
+    'password': os.getenv('DB_PASSWORD')
 }
 
-database_name = os.getenv('DB_NAME'),
+database_name = os.getenv('DB_NAME')
 table_name = "bronze_real_estate_raw"
 
 conn = mysql.connector.connect(**db_config)
