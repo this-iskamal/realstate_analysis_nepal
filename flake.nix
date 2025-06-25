@@ -1,4 +1,8 @@
 {
+  # NOTE: This file | Flake is needes to those users who uses NixOS | Nix package manager with flake feature
+  # enabled.
+  # This doesn't concern you if you are not using NixOS | Nix package manager
+
   description = "Python Development Environemnt";
 
   inputs = {
@@ -15,14 +19,20 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [ python312  geckodriver curl];
 
-          # FIX: Init zsh at the begining or at the end?
+          # NOTE: Init of zsh removes the virtual environment,
+          # commenting out zsh until an solution is found
           shellHook = ''
+            # exec zsh
             echo "Python : $(python --version)"
-            if [ 'venv' -d ]; then
-              echo "found venv"
+            if [ -d 'venv' ]; then
+              # Activate the virtual environment
+              source venv/bin/activate
             else
-              echo "venv not found
-            exec zsh
+              # Create virtual environment if not found and activate the virtual environment
+              python -m venv venv
+              # TODO: install requirements through pip is requirement.txt is found in the directory
+              source venv/bin/activate
+            fi
           '';
         };
       }
