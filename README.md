@@ -4,6 +4,24 @@
 
 This project focuses on the automated extraction, warehousing, and analysis of real estate data from [lalpurjanepal.com.np](https://lalpurjanepal.com.np). The objective is to build a reliable data pipeline that collects property listings, processes and stores them in a structured database, and enables comprehensive analysis of the Nepalese real estate market.
 
+## 📊 Exploratory Data Analysis (EDA)
+
+The report is inside the visualization folder.
+
+To run the EDA :
+### 1. Clone the Repository
+git clone https://github.com/this-iskamal/realstate_analysis_nepal
+cd real-estate-analysis-nepal
+
+### Install Required Libraries
+pip install -r requirements.txt
+
+### Run the EDA 
+cd visualization
+python app.py
+
+
+
 ## Key Features
 
 - **Automated Data Scraping:**  
