@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Real Estate Data Analysis Dashboard</h1>
+        <p class="lead">Select a visualization to explore the real estate data</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">City Analysis</h5>
+                <p class="card-text">View property distribution by city</p>
+                <a href="{{ url_for('visualization', chart_type='houses_per_city') }}" class="btn btn-primary">View Chart</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Area Analysis by City</h5>
+                <p class="card-text">Property distribution by area within cities</p>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Select City
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for city in cities %}
+                        <li><a class="dropdown-item" href="{{ url_for('visualization', chart_type='houses_per_area', city=city) }}">{{ city }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Feature Correlation</h5>
+                <p class="card-text">Correlation between property features</p>
+                <a href="{{ url_for('visualization', chart_type='correlation_heatmap') }}" class="btn btn-primary">View Heatmap</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Price vs Area</h5>
+                <p class="card-text">Scatter plot of price vs property area</p>
+                <a href="{{ url_for('visualization', chart_type='price_vs_area') }}" class="btn btn-primary">All Cities</a>
+                <div class="dropdown mt-2">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        By City
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for city in cities %}
+                        <li><a class="dropdown-item" href="{{ url_for('visualization', chart_type='price_vs_area', city=city) }}">{{ city }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Average Prices</h5>
+                <p class="card-text">Average property prices by city</p>
+                <a href="{{ url_for('visualization', chart_type='avg_price_by_city') }}" class="btn btn-primary">View Chart</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Property Types</h5>
+                <p class="card-text">Distribution of property types</p>
+                <a href="{{ url_for('visualization', chart_type='property_type') }}" class="btn btn-primary">View Chart</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Property Age</h5>
+                <p class="card-text">Distribution of property ages</p>
+                <a href="{{ url_for('visualization', chart_type='property_age') }}" class="btn btn-primary">View Chart</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
